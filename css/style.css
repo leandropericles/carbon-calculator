@@ -1,0 +1,546 @@
+:root {
+    /* Paleta de cores ecológicas */
+    --primary: #10b981;
+    --secondary: #059669;
+    --accent: #34d399;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --info: #3b82f6;
+    --text: #1f2937;
+    --text-light: #6b7280;
+    --bg: #f3f4f6;
+    --white: #ffffff;
+    
+    /* Gradiente de fundo */
+    --gradient-start: #d4fc79;
+    --gradient-end: #96e6a1;
+    
+    /* Espaçamento */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    
+    /* Bordas */
+    --radius: 0.5rem;
+    --radius-lg: 1rem;
+    
+    /* Sombras */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Reset e base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+    min-height: 100vh;
+    color: var(--text);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+/* Utilitários */
+.hidden {
+    display: none !important;
+}
+
+.section-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+}
+
+/* Header */
+.header {
+    background: var(--white);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-xl) 0;
+    text-align: center;
+}
+
+.header__title {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+}
+
+.header__icon {
+    font-size: 2.5rem;
+}
+
+.header__subtitle {
+    color: var(--text-light);
+    font-size: 1.125rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Main */
+.main {
+    padding: var(--spacing-xl) 0;
+}
+
+/* Formulário */
+.calculator {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+}
+
+.form-group {
+    margin-bottom: var(--spacing-lg);
+}
+
+.form-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+    color: var(--text);
+}
+
+.form-input {
+    width: 100%;
+    padding: var(--spacing-sm);
+    border: 2px solid var(--bg);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.form-input:read-only {
+    background-color: var(--bg);
+    cursor: not-allowed;
+}
+
+.form-help {
+    display: block;
+    margin-top: var(--spacing-xs);
+    font-size: 0.875rem;
+    color: var(--text-light);
+}
+
+.form-help.success {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.checkbox {
+    width: 1.25rem;
+    height: 1.25rem;
+    cursor: pointer;
+}
+
+/* Grade de Transporte */
+.transport-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+}
+
+.transport-card {
+    position: relative;
+    border: 2px solid var(--bg);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+    background: var(--white);
+}
+
+.transport-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.transport-card--selected {
+    border-color: var(--primary);
+    background: rgba(16, 185, 129, 0.05);
+}
+
+.transport-input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.transport-card__icon {
+    display: block;
+    font-size: 3rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.transport-card__label {
+    display: block;
+    font-weight: 600;
+    color: var(--text);
+}
+
+/* Botão */
+.btn {
+    display: inline-block;
+    padding: var(--spacing-sm) var(--spacing-xl);
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.btn--primary {
+    background: var(--primary);
+    color: var(--white);
+    box-shadow: var(--shadow-md);
+}
+
+.btn--primary:hover {
+    background: var(--secondary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Spinner */
+.spinner {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid var(--white);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-right: var(--spacing-sm);
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Seções de Resultados */
+.results-section,
+.comparison-section,
+.carbon-credits-section {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Cards de Resultado */
+.results-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.result-card {
+    background: var(--white);
+    border: 2px solid var(--bg);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    transition: all 0.3s ease;
+}
+
+.result-card--highlight {
+    border-color: var(--primary);
+    background: rgba(16, 185, 129, 0.05);
+}
+
+.result-card__label {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--spacing-xs);
+}
+
+.result-card__value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.result-card__icon {
+    font-size: 2rem;
+}
+
+.result-card__subtext {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    margin-top: var(--spacing-xs);
+}
+
+/* Comparação */
+.comparison-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.comparison-item {
+    border: 2px solid var(--bg);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    transition: all 0.3s ease;
+}
+
+.comparison-item--selected {
+    border-color: var(--primary);
+    background: rgba(16, 185, 129, 0.05);
+    position: relative;
+}
+
+.comparison-item__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.comparison-item__title {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-weight: 600;
+    font-size: 1.125rem;
+}
+
+.comparison-item__badge {
+    background: var(--primary);
+    color: var(--white);
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.comparison-item__stats {
+    display: flex;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+}
+
+.comparison-item__stat {
+    display: flex;
+    flex-direction: column;
+}
+
+.comparison-item__stat-label {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.comparison-item__stat-value {
+    font-weight: 600;
+    color: var(--text);
+}
+
+.comparison-item__bar {
+    height: 8px;
+    background: var(--bg);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.comparison-item__bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+.comparison-item__bar-fill--green {
+    background: var(--primary);
+}
+
+.comparison-item__bar-fill--yellow {
+    background: var(--warning);
+}
+
+.comparison-item__bar-fill--orange {
+    background: #f97316;
+}
+
+.comparison-item__bar-fill--red {
+    background: var(--danger);
+}
+
+.comparison-tip {
+    background: rgba(59, 130, 246, 0.1);
+    border-left: 4px solid var(--info);
+    padding: var(--spacing-md);
+    border-radius: var(--radius);
+    margin-top: var(--spacing-lg);
+    font-size: 0.9rem;
+    color: var(--text);
+}
+
+/* Créditos de Carbono */
+.carbon-credits-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.credit-card {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    color: var(--white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    text-align: center;
+}
+
+.credit-card__value {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+}
+
+.credit-card__label {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.credit-card__info {
+    background: var(--bg);
+    border-radius: var(--radius);
+    padding: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
+
+.credit-card__info h3 {
+    color: var(--text);
+    margin-bottom: var(--spacing-sm);
+}
+
+.credit-card__info p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.credit-price {
+    text-align: center;
+}
+
+.credit-price__value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.credit-price__range {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.btn--success {
+    background: var(--primary);
+    color: var(--white);
+    margin-top: var(--spacing-lg);
+}
+
+/* Footer */
+.footer {
+    background: var(--white);
+    padding: var(--spacing-lg) 0;
+    text-align: center;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.footer__text {
+    color: var(--text-light);
+    font-size: 0.875rem;
+}
+
+/* Responsivo */
+@media (min-width: 768px) {
+    .transport-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .header__title {
+        font-size: 3rem;
+    }
+    
+    .btn {
+        width: auto;
+        min-width: 250px;
+    }
+}
+
+@media (max-width: 767px) {
+    .header__title {
+        font-size: 1.75rem;
+    }
+    
+    .header__icon {
+        font-size: 1.75rem;
+    }
+    
+    .transport-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .transport-card__icon {
+        font-size: 2rem;
+    }
+    
+    .result-card__value {
+        font-size: 1.5rem;
+    }
+    
+    .credit-card__value {
+        font-size: 2rem;
+    }
+}
