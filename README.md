@@ -3,7 +3,6 @@
 > **Desafio de Projeto — DIO | Calculadora de Emissão de CO₂ com GitHub Copilot**
 
 **Autor:** Leandro Péricles Fabrício | Campus Expert DIO
-**Data:** Março de 2026
 
 ---
 
